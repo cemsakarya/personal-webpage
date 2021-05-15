@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <b> {{Header}} </b>
+    <p> {{Body}} </p>
+    <base href="/blog/" />
+    <base href="/resume/" />
+
+    {% for i in List %}
+    <a href={{i}}>{{i}}</a> <br/> <br/>
+    {% endfor %}
+</body>
+</html>
