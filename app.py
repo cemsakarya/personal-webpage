@@ -4,6 +4,7 @@ from assetsDB import posts_update
 import os, sqlite3, yaml
 
 app = Flask(__name__)
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 conn = sqlite3.connect(r"""C:\Users\cemsa\Documents\PyDBs\personal-webpage.db""", check_same_thread=False)
 stream = open("config.yaml", 'r')
 config = yaml.load(stream, Loader=yaml.FullLoader)
@@ -22,9 +23,10 @@ def index():
                            Resume=url_for("resume")
                            )
 
+
 @app.route('/quote')
 def quote():
-
+    return "not yet"
 
 
 @app.route('/blog')
@@ -47,13 +49,15 @@ def resume():
                            )
 
 
-@app.route('/blog/<post>')
-def posts(post):
-    asset = AssetFile(post)
-    posts_update(conn, post)
-    return render_template("blogpost.html",
+@app.route('/blog/<blogpost>')
+def posts(blogpost):
+    asset = AssetFile(blogpost)
+    posts_update(conn, blogpost)
+    return render_template("blog-test.html",
                            Title=asset.title,
                            Header=asset.header,
+                           Image1="/static/images/IMG_0299.jpg",
+                           Image2="/static/images/IMG_0299@2x.jpg",
                            Body=asset.body
                            )
 

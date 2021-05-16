@@ -20,8 +20,8 @@ def header(file_full_address):
 def body(file_full_address):
     with open(file_full_address, 'r') as f:
         lines = f.readlines()[1:]
-        # lines = "".join(lines)
-        lines = [i.replace("\n", "") for i in lines]
+        lines = "".join(lines)
+        # lines = [i.replace("\n", "<br>") for i in lines]
         f.close()
     return lines
 
