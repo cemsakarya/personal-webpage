@@ -11,3 +11,6 @@ domain:
 
 resume:
   pdf: true
+
+init:
+  DB: "C:\\Users\\cemsa\\Documents\\PyDBs\\personal-webpage.db"

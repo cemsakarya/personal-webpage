@@ -5,9 +5,9 @@ import os, sqlite3, yaml
 
 app = Flask(__name__)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-conn = sqlite3.connect(r"""C:\Users\cemsa\Documents\PyDBs\personal-webpage.db""", check_same_thread=False)
 stream = open("config.yaml", 'r')
 config = yaml.load(stream, Loader=yaml.FullLoader)
+conn = sqlite3.connect(config["init"]["DB"], check_same_thread=False)
 
 
 @app.route('/', methods=['POST', 'GET'])
