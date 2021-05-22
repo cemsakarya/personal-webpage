@@ -15,12 +15,27 @@ def index():
     if request.method == 'POST':
         userEmail = request.form['userEmail']
         return userEmail
-    return render_template("index.html",
+    return render_template("index-test.html",
                            Title="Home",
                            Header=config["author"]["name"],
+                           LinkedIn=config["author"]["linkedin"],
+                           github=config["author"]["github"],
                            Body=config["author"]["bio"],
                            Blog=url_for("blog"),
                            Resume=url_for("resume")
+                           )
+
+
+@app.route('/timeline')
+def timeline():
+    return render_template("timeline.html",
+                            Image1 = "/static/images/IMG_0299.jpg",
+                            Image2 = "/static/images/IMG_0299@2x.jpg",
+                            cisa="/static/images/CISA.jpg",
+                            cisa2="/static/images/CISA@2x.jpg",
+                            cissp="/static/images/CISSP_-_Square.jpg",
+                            cissp2="/static/images/CISSP_-_Square@2x.jpg"
+
                            )
 
 
