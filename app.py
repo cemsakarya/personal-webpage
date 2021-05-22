@@ -68,14 +68,13 @@ def resume():
 def posts(blogpost):
     asset = AssetFile(blogpost)
     posts_update(conn, blogpost)
-    return render_template("blog-test.html",
+    return render_template("blogpost-test.html",
                            Title=asset.title,
                            Header=asset.header,
                            Image1="/static/images/IMG_0299.jpg",
                            Image2="/static/images/IMG_0299@2x.jpg",
                            Body=asset.body
                            )
-
 
 if __name__ == '__main__':
     app.run(debug=True)
