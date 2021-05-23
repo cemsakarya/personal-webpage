@@ -1,13 +1,12 @@
-from flask import Flask, render_template, redirect, url_for, request
+import functools
+import urllib
+
+from flask import (Flask, abort, flash, Markup, redirect, render_template,
+                   request, Response, session, url_for)
 from assetshandler import AssetFile, Assets
 from assetsDB import posts_update
 import os, sqlite3, yaml
-
-app = Flask(__name__)
-APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-stream = open("config.yaml", 'r')
-config = yaml.load(stream, Loader=yaml.FullLoader)
-conn = sqlite3.connect(config["init"]["DB"], check_same_thread=False)
+from __init__ import conn, app, config
 
 
 @app.route('/', methods=['POST', 'GET'])
@@ -22,7 +21,7 @@ def index():
                            github=config["author"]["github"],
                            Body=config["author"]["bio"],
                            Blog=url_for("blog"),
-                           Resume=url_for("resume")
+
                            )
 
 
@@ -35,13 +34,7 @@ def timeline():
                             cisa2="/static/images/CISA@2x.jpg",
                             cissp="/static/images/CISSP_-_Square.jpg",
                             cissp2="/static/images/CISSP_-_Square@2x.jpg"
-
                            )
-
-
-@app.route('/quote')
-def quote():
-    return "not yet"
 
 
 @app.route('/blog')
@@ -52,15 +45,6 @@ def blog():
                            Header="Blog",
                            Body="Landing Page for Blog Posts",
                            List=asset.posts_list
-                           )
-
-
-@app.route('/resume')
-def resume():
-    return render_template("resume.html",
-                           Title="Blog",
-                           Header="Blog",
-                           Resume=os.getcwd().replace('\\', '/') + '/resume/' + "Cem_Sakarya_Resume.pdf"
                            )
 
 
@@ -76,5 +60,11 @@ def posts(blogpost):
                            Body=asset.body
                            )
 
-if __name__ == '__main__':
+
+def main():
     app.run(debug=True)
+
+
+if __name__ == '__main__':
+    main()
+

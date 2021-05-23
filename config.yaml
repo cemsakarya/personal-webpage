@@ -15,4 +15,5 @@ resume:
   pdf: true
 
 init:
+  app: "C:\\Users\\cemsa\\PycharmProjects\\personal-webpage"
   DB: "C:\\Users\\cemsa\\Documents\\PyDBs\\personal-webpage.db"
